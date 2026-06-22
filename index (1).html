@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="site_title">Medicine Vending Portal</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <label for="language-select" data-translate="language_label">🌐 Language: </label>
+    <select id="language-select">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+    </select>
+  </div>
+
+  <!-- Book Structure -->
+  <div class="book">
+    <div class="cover"></div>
+    <div class="pages">
+      <!-- Left Page -->
+      <div class="page left">
+        
+        <h1 data-translate="welcome_heading">Rooted in India , Nourishing the world</h1>
+        <p data-translate="welcome_text">Quick, safe, and reliable access to your medical needs.</p>
+      </div>
+
+      <!-- Right Page -->
+      <div class="page right">
+        <div class="options">
+          <a href="frontend/login.html" class="login-link" data-translate="login">Login</a>
+          <a href="frontend/prescription.html" class="btn btn-secondary" data-translate="buy_prescription">Upload Prescription</a>
+          <a href="frontend/otc.html" class="btn btn-primary" data-translate="buy_otc">Feel good 👉 Naturally</a>
+          <a href="frontend/history.html" class="btn btn-secondary" data-translate="order_history">Order History</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="frontend/language.js"></script>
+</body>
+</html>

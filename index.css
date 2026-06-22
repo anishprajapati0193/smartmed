@@ -1,0 +1,190 @@
+/* Background */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* ✅ Set your background here */
+  background: url("i1.jpg") no-repeat center center/cover;
+  font-family: "Georgia", serif;
+}
+
+/* Language Switcher */
+.language-switcher {
+  position: absolute;
+  top: 5%;
+  left: 43%;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  align-items: center;
+  
+  
+}
+
+/* Book Wrapper */
+.book {
+  position: relative;
+  width: 560px;
+  height: 380px;
+  perspective: 1800px;
+}
+
+/* Leather Cover */
+.cover {
+  position: absolute;
+  width: 580px;
+  height: 400px;
+  background: linear-gradient(135deg, #2b2015, #1a120b);
+  border-radius: 8px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+/* Pages Container */
+.pages {
+  display: flex;
+  width: 560px;
+  height: 380px;
+  transform: rotateX(6deg) rotateY(-15deg);
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 2;
+}
+
+/* Single Page */
+.page {
+  flex: 1;
+  padding: 30px;
+  background: #fcf8ef;
+  border: 1px solid #e4dcc3;
+  line-height: 1.6;
+  position: relative;
+}
+
+/* Left Page */
+.page.left {
+  border-right: 4px solid #d6c89b;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  box-shadow: inset -18px 0 35px rgba(0,0,0,0.25);
+}
+
+/* Right Page */
+.page.right {
+  border-left: 4px solid #d6c89b;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: inset 18px 0 35px rgba(0,0,0,0.25);
+}
+
+
+/* Page Edge Effect */
+.page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: linear-gradient(to right, #eae3d3, #fdfbf6);
+  z-index: -1;
+}
+
+.page.left::before {
+  left: -10px;
+  border-radius: 4px 0 0 4px;
+}
+
+.page.right::before {
+  right: -10px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Buttons */
+.btn {
+  display: block;
+  margin: 12px 0;
+  padding: 10px 18px;
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: #3a7d44;
+  color: white;
+}
+
+.btn-secondary {
+  background: #444;
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Login Link */
+.login-link {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #3a7d44;
+}
+/* ---------- Fix: make links clickable in book layout ---------- */
+/* Add this at the end of your index.css so it overrides previous rules */
+
+/* Ensure the book is a positioned context */
+.book {
+  position: relative;
+  /* don't change layout: keep existing display rules — only add positioning */
+}
+
+/* Put pages above the decorative cover so they receive clicks */
+.book .pages {
+  position: relative;
+  z-index: 3; /* above .cover */
+}
+
+/* If .cover was placed visually above .pages, keep its visuals but disable it catching pointer events */
+.book .cover {
+  /* keep its existing visuals but make it non-interactive */
+  pointer-events: none !important;
+  z-index: 2; /* below .pages but above background if needed */
+}
+
+/* Make sure individual page containers are above the cover */
+.book .page {
+  position: relative;
+  z-index: 4;
+}
+
+/* Enforce clickable anchors and buttons inside pages */
+.book .page a,
+.book .page .btn,
+.book .page button,
+.book .page input,
+.book .page select {
+  pointer-events: auto;
+  position: relative; /* ensures z-index can apply if needed */
+  z-index: 5;
+}
+
+/* Safety: if some global rule used absolute/full-screen overlay,
+   this will prevent it from blocking clicks inside the book */
+.book > * {
+  pointer-events: auto;
+}
+
+/* Optional: if you still see a visual element completely covering pages,
+   this will send it behind pages while preserving appearance */
+.book .cover[style] {
+  /* only if inline styles used for cover positioning — keep safe */
+  z-index: 1;
+}
+
