@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prescription Reader</title>
+  <link rel="stylesheet" href="prescription.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>📄 Prescription Reader</h1>
+
+  <div class="upload-area">
+    <input type="file" id="upload" accept="image/*">
+    <label for="upload">Upload Prescription Image</label>
+    <p id="file-name"></p>
+  </div>
+
+  <button class="btn" onclick="sendImage()">Read Prescription</button>
+
+  <div id="results"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="prescription.js"></script>
+</body>
+</html>

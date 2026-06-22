@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment - Medicine Vending</title>
+  <link rel="stylesheet" href="payment.css">
+  <style>
+    /* Simple popup overlay style */
+    .qr-code-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    .qr-popup {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 90%;
+    }
+    .hidden { display: none; }
+    .qr-image {
+      width: 250px;
+      margin: 15px auto;
+      display: block;
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 10px;
+    }
+    .btn-primary { background: #4CAF50; color: white; }
+    .btn-secondary { background: #555; color: white; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="otc.html" class="back-link">⬅ Back to Selection</a>
+    <h1>Order Summary & Payment</h1>
+
+    <div id="details" class="order-summary"></div>
+
+    <div class="payment-methods" id="payment-methods">
+      <button class="btn btn-primary payment-btn" id="phonepe-btn">
+        <img src="phonepe.png" alt="PhonePe" class="icon"> Pay with PhonePe
+      </button>
+
+      <button class="btn btn-primary payment-btn" id="gpay-btn">
+        <img src="googlepay.png" alt="Google Pay" class="icon"> Pay with Google Pay
+      </button>
+
+      <button id="qr-pay-btn" class="btn btn-secondary payment-btn">
+        <img src="scanner.png" alt="QR" class="icon"> Scan QR Code
+      </button>
+    </div>
+
+    <!-- Popup QR container -->
+    <div id="qr-code-section" class="qr-code-container hidden">
+      <div class="qr-popup" id="qr-popup">
+        <p>Scan this QR code with any UPI app to complete payment:</p>
+        <img src="" alt="UPI QR Code" class="qr-image">
+        <p class="account-details">UPI ID: <strong>paytmqr5kpeef@ptys</strong></p>
+        <p class="account-details">Name: <strong>Anish Prajapati</strong></p>
+        <button class="btn btn-primary btn-large" id="confirm-payment-btn">✅ I have paid</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="payment.js"></script>
+</body>
+</html>

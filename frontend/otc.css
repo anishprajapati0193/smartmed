@@ -1,0 +1,224 @@
+/* =============== General Page Styling =============== */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  background: url("e2bf695597a2b2eee4e65380999c1eaa.jpg") no-repeat center center/cover;
+  background-attachment: fixed;
+  align-items: center;
+  
+}
+
+
+.container {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 850px;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Titles */
+h1 {
+  text-align: center;
+  font-size: 30px;
+  
+  margin-bottom: 10px;
+  color: #006eff;
+  -webkit-text-stroke: 1px rgb(7, 0, 99);
+  
+  
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: #000000;
+  margin-bottom: 25px;
+}
+
+/* =============== Accordion Styling =============== */
+.disease,
+.company {
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+}
+
+
+/* Accordion headers (Disease & Company) */
+.disease-header{
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #a0cada;
+  transition: background 0.9s ease-ins;
+}
+
+.company-header {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: #f2f2f2;
+  transition: background 0.9s ease-ins;
+}
+
+.disease-header:hover
+{
+  background: #98bbe1;
+}
+.company-header:hover {
+  background: #e6e6e6;
+}
+
+.disease-body,
+.company-body {
+  display: none;
+  padding: 15px;
+  background: #fff;
+}
+
+/* Open accordion */
+.disease.active .disease-body,
+.company.active .company-body {
+  display: block;
+}
+
+/* =============== Medicine Option =============== */
+.medicine-option {
+  background: #f9f9f9;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background 0.3s;
+}
+
+.medicine-option:hover {
+  background: #eef6ff;
+}
+
+/* Medicine button */
+.medicine-btn {
+  flex-grow: 1;
+  text-align: left;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.medicine-btn.selected {
+  background: #007bff;
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* Info icon */
+.info-icon {
+  font-size: 18px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Quantity selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.quantity-selector input {
+  width: 50px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* =============== Modal Popup =============== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  text-align: left;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Checkout button */
+.checkout-section {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.btn {
+  background: #007bff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+
+/* Ensure modal text shows newline breaks (line-by-line) */
+.modal-content #modalText {
+  white-space: pre-line;    /* render newline characters as line breaks */
+  line-height: 1.6;
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+}
+
+/* optional small spacing if you end up inserting <br> or multiple lines */
+.modal-content #modalText + p,
+.modal-content #modalText p {
+  margin-bottom: 8px;
+}
