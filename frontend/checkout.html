@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Checkout</h1>
+      <div>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="order_history.html" style="margin-left:12px">Order History</a>
+        <a href="#" onclick="app.logout()" style="margin-left:12px">Logout</a>
+      </div>
+    </header>
+
+    <div id="checkoutCard" class="card">
+      <h3>Cart</h3>
+      <div id="cartItems"></div>
+      <div style="margin-top:12px" class="checkout-row">
+        <div class="small">Total: <span id="total">₹0.00</span></div>
+        <div>
+          <button id="payBtn">Pay Now</button>
+          <button class="secondary" id="clearBtn">Clear Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const user = app.getCurrentUser();
+    if (!user) window.location = 'login.html';
+
+    function renderCart() {
+      const cart = app.getCart();
+      const el = document.getElementById('cartItems');
+      if (!cart.length) {
+        el.innerHTML = '<p>Your cart is empty.</p>';
+        document.getElementById('total').textContent = app.formatCurrency(0);
+        return;
+      }
+      let html = '<table><tr><th>Product</th><th>Qty</th><th>Price</th></tr>';
+      let total = 0;
+      cart.forEach(item => {
+        html += `<tr><td>${item.name}</td><td>${item.quantity}</td><td>${app.formatCurrency(item.price)}</td></tr>`;
+        total += item.price * item.quantity;
+      });
+      html += '</table>';
+      el.innerHTML = html;
+      document.getElementById('total').textContent = app.formatCurrency(total);
+    }
+
+    document.getElementById('payBtn').addEventListener('click', function(){
+      if (app.saveCartAsOrdersAndClear()) {
+        window.location = 'success.html';
+      } else {
+        alert('No items in cart to pay.');
+      }
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', function(){
+      sessionStorage.removeItem('cart');
+      renderCart();
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

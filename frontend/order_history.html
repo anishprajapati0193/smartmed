@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Order History</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Your Order History</h1>
+      <div>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="checkout.html" style="margin-left:12px">Checkout</a>
+        <a href="#" onclick="app.logout()" style="margin-left:12px">Logout</a>
+      </div>
+    </header>
+
+    <div id="history" class="card">
+      <p class="small">Loading…</p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    const user = app.getCurrentUser();
+    if (!user) window.location = 'login.html';
+
+    function render() {
+      const list = app.getOrdersForCurrentUser();
+      const el = document.getElementById('history');
+      if (!list.length) {
+        el.innerHTML = '<p>No past orders found.</p>';
+        return;
+      }
+      let html = '<ul>';
+      list.forEach(o => {
+        html += `<li>#${o.order_id} — ${o.product_name} × ${o.quantity} (${new Date(o.order_date).toLocaleString()})</li>`;
+      });
+      html += '</ul>';
+      el.innerHTML = html;
+    }
+
+    render();
+  </script>
+</body>
+</html>
